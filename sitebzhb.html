@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спорттық Маркетинг</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Навигация + Профиль -->
+    <header>
+        <h1>⚡ Спорттық Маркетинг ⚡</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">🏠 Басты бет</a></li>
+                <li><a href="#" onclick="showPage('shop')">🛒 Дүкен</a></li>
+                <li><a href="#" onclick="showPage('cart')">🛍️ Корзина</a></li>
+                <li><a href="#" onclick="showPage('clubs')">🏋️ Спорт клубтары</a></li>
+                <li><a href="#" onclick="showPage('news')">📰 Жаңалықтар</a></li>
+                <li><a href="#" onclick="showPage('contacts')">📞 Байланыс</a></li>
+                <li><a href="#" onclick="showPage('register')" id="registerMenu">👤 Тіркелу</a></li>
+            </ul>
+        </nav>
+
+        <!-- Блок профиля -->
+        <div id="profileBlock" class="profile hidden">
+            <p>📂 <b id="profileName"></b> | ✉️ <span id="profileEmail"></span></p>
+            <button onclick="logout()">🔙 Шығу</button>
+        </div>
+    </header>
+
+    <!-- Контент -->
+    <main>
+        <section id="home" class="page active">
+            <h2>🏆 Спорттық Маркетинг туралы</h2>
+            <p> Спортпен дұрыс шұғылдану – адамның иммунитетін күшейтіп, дерттерге қарсы тұруға көмегін тигізеді және есте сақтау қабілетін жақсартып, ұйықтай алмау қиындығынан құтқарады. Ағзаның иммунитетін көтеріп, жүрек-тамыр жүйесінің қызметінің жақсаруына айрықша септігін тигізеді. Кейбір спорттың түрі адамдарға кері әсерін тигізуі мүмкін. Мұндай жағдайда бір мезгіл жаяу жүру керек. Сонда ғана қаныңыздағы қант мөлшерін реттей аласыз және жүрек аурулардың  алдын алып, қатерлі ісіктің кейбір түрінен сақтана аласыз. Шындығына келгенде, әрбір адам өз денсаулығының кепілі. Ұзақ өмір сүрем десеңіз, спортпен шұғылданыңыз.</p>
+        </section>
+
+        <!-- Магазин -->
+        <section id="shop" class="page">
+            <h2>🛒 Дүкен</h2>
+
+            <div class="product">
+                <img src="nike.jpg" alt="Nike кроссовкалары">
+                <h3>👟 Nike Air Zoom</h3>
+                <p>Жеңіл әрі ыңғайлы жүгіруге арналған кроссовкалар.</p>
+                <p><b>Бағасы: 25 000 ₸</b></p>
+                <button onclick="addToCart('Nike Air Zoom', 25000)">🛍️ Себетке қосу</button>
+            </div>
+
+            <div class="product">
+                <img src="adidas.jpg" alt="Adidas футболкасы">
+                <h3>🎽 Adidas Sport T-shirt</h3>
+                <p>Спортпен айналысуға ыңғайлы жеңіл футболка.</p>
+                <p><b>Бағасы: 15 000 ₸</b></p>
+                <button onclick="addToCart('Adidas Sport T-shirt', 15000)">🛍️ Себетке қосу</button>
+            </div>
+
+            <div class="product">
+                <img src="dumbbells.jpg" alt="Гантельдер">
+                <h3>Гантели</h3>
+                <p>Спортпен айналысуға ыңғайлы гантельдер.</p>
+                <p><b>Бағасы: 15 000 ₸</b></p>
+                <button onclick="addToCart('Гантельдер', 15000)">🛍️ Себетке қосу</button>
+            </div>
+
+            <div class="product">
+                <img src="arenagidro.jpg" alt="ARENA Гидрокостюмі">
+                <h3>Су киімі</h3>
+                <p>Жүзумен айналысуға ыңғайлы гидрокостюм.</p>
+                <p><b>Бағасы: 250 000 ₸</b></p>
+                <button onclick="addToCart('ARENA Гидрокостюмі', 250000)">🛍️ Себетке қосу</button>
+            </div>
+
+            <div class="product">
+                <img src="asics.jpg" alt="ASICS кроссовкиі">
+                <h3>Аяқ киім</h3>
+                <p>Спортпен айналысуға ыңғайлы кроссовки.</p>
+                <p><b>Бағасы: 25 000 ₸</b></p>
+                <button onclick="addToCart('ASICS кроссовкиі', 25000)">🛍️ Себетке қосу</button>
+            </div>
+        </section>
+
+        <!-- Корзина -->
+        <section id="cart" class="page">
+            <h2>🛍️ Сіздің себетіңіз</h2>
+            <ul id="cartItems"></ul>
+            <p><b>Жалпы бағасы: <span id="totalPrice">0</span> ₸</b></p>
+            <button onclick="openPayment()" id="payButton" disabled>💳 Төлеу</button>
+        </section>
+
+        <!-- Спорт клубтары -->
+        <section id="clubs" class="page">
+            <h2>🏋️ Алматыдағы спорт клубтары</h2>
+            <ul>
+                <li>💪 "Olimp" Фитнес орталығы – заманауи жаттығу залдары, бассейн.</li>
+                <li>🏀 "Almaty Warriors" Баскетбол академиясы – кәсіби дайындық.</li>
+                <li>🥋 "Dojo Kaz" Жекпе-жек спорт клубы – каратэ, бокс, дзюдо.</li>
+            </ul>
+        </section>
+
+        <!-- Новости спорта -->
+        <section id="news" class="page">
+            <h2>📰 Соңғы спорт жаңалықтары</h2>
+            <ul>
+                <li>⚽ Қазақстан құрамасы Азия Кубогында жеңіске жетті!</li>
+                <li>🏀 Алматыда халықаралық баскетбол турнирі өтеді.</li>
+                <li>🥇 Олимпиадаға дайындық басталды – басты фавориттер кім?</li>
+            </ul>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="page">
+            <h2>📞 Байланыс</h2>
+            <p>Email: sport@marketing.kz</p>
+            <p>Телефон: +7 777 777 7777</p>
+        </section>
+
+        <!-- Страница регистрации -->
+        <section id="register" class="page">
+            <h2>👤 Тіркелу</h2>
+            <form id="registerForm" onsubmit="registerUser(event)">
+                <label for="username">Аты-жөні:</label>
+                <input type="text" id="username" required>
+                <label for="email">Электрондық пошта:</label>
+                <input type="email" id="email" required>
+                <label for="password">Құпиясөз:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Тіркелу</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        let cart = [];
+
+        function showPage(pageId) {
+            let pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartList = document.getElementById("cartItems");
+            let totalPrice = 0;
+            cartList.innerHTML = "";
+            cart.forEach((item, index) => {
+                cartList.innerHTML += `<li>${item.name} - ${item.price} ₸ <button onclick="removeFromCart(${index})">❌</button></li>`;
+                totalPrice += item.price;
+            });
+            document.getElementById("totalPrice").innerText = totalPrice;
+            document.getElementById("payButton").disabled = cart.length === 0;
+        }
+
+        function openPayment() {
+            if (cart.length > 0) {
+                alert("💳 Төлем жасауға дайынсыз ба?");
+                cart = [];
+                updateCart();
+            }
+        }
+
+        function logout() {
+            document.getElementById("profileBlock").classList.add("hidden");
+            document.getElementById("registerMenu").style.display = "inline";
+            showPage("home");
+        }
+
+        function registerUser(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (username && email && password) {
+                document.getElementById("profileName").innerText = username;
+                document.getElementById("profileEmail").innerText = email;
+                document.getElementById("profileBlock").classList.remove("hidden");
+                document.getElementById("registerMenu").style.display = "none";
+                showPage("home");
+            }
+        }
+    </script>
+</body>
+</html>
